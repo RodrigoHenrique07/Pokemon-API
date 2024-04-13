@@ -35,7 +35,7 @@ export const DescriptionPokemon = styled.ul`
 `;
 
 export const TypePokemon = styled.li`
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   display: block;
 
   &:last-child {

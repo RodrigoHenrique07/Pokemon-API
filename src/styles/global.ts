@@ -10,13 +10,19 @@ export default createGlobalStyle`
   list-style: none;
   text-decoration: none;
   font-size: 1.6rem;
-  font-family: 'Manuale', sans-serif;
-  color: ${({ theme }) => theme.BLACK}
+  color: ${({ theme }) => theme.WHITE};
+
+  font-family: 'Lato', sans-serif;
+   
   
 }
 
 body, input, button, textarea{
   outline: none;
+}
+
+body{
+  background-color: #040011;
 }
 
 img{

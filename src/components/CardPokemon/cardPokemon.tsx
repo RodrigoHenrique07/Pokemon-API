@@ -1,10 +1,10 @@
 import * as S from './styled';
 
 interface CharacterPokemon {
-  image: string;
+  image?: string;
   name: string;
-  genre: string;
-  especie: string;
+  genre?: string;
+  especie?: string;
 }
 
 export function CardPokemon({

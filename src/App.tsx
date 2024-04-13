@@ -1,13 +1,15 @@
 import { ThemeProvider } from 'styled-components';
-import GlobalStyle from './styles/global.ts';
-import { defaultTheme } from './styles/theme.ts';
+import GlobalStyle from './styles/global';
+import { defaultTheme } from './styles/theme';
+import { Home } from './pages/home';
 
 function App() {
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyle />
-        <h1>Hellow template Hellow</h1>
+        <Home/>
+        
       </ThemeProvider>
     </>
   );
