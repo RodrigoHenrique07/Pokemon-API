@@ -4,14 +4,12 @@ interface CharacterPokemon {
   image?: string;
   name: string;
   genre?: string;
-  especie?: string;
 }
 
 export function CardPokemon({
   image,
   name,
   genre,
-  especie,
   ...rest
 }: CharacterPokemon) {
   return (
@@ -25,8 +23,7 @@ export function CardPokemon({
           <S.NamePokemon>{name}</S.NamePokemon>
 
           <S.DescriptionPokemon>
-            <S.TypePokemon>Gênero: {genre} </S.TypePokemon>
-            <S.TypePokemon>Espécie: {especie} </S.TypePokemon>
+            <S.TypePokemon>Tipo: {genre} </S.TypePokemon>
           </S.DescriptionPokemon>
         </S.InfoPokemon>
       </S.ContainerCard>
