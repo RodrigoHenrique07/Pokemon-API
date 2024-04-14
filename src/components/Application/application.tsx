@@ -6,6 +6,7 @@ import axios from 'axios';
 import logo from '@assets/pokemon-logo.png';
 import { useEffect, useState } from 'react';
 import { Loadin } from '../Loading/loading';
+import { useSessionState } from '../useSessionState';
 
 interface Pokemon {
   types: any;
@@ -25,7 +26,7 @@ interface Species {
 
 export function Application() {
   const [characters, setCharacters] = useState<Pokemon[]>([]);
-  const [page, setPage] = useState(21);
+  const [page, setPage] = useSessionState('');
   const [isLoading, SetIsLoading] = useState(true);
 
   function scrollToTop() {
