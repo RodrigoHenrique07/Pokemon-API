@@ -32,15 +32,17 @@ interface Species {
 export function Application() {
   const [characters, setCharacters] = useState<Pokemon[]>([]);
   const [page, setPage] = useSessionState('');
+  const [countPage, setCountPage] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const contentRef = useRef<HTMLDivElement>(null); 
-
+  const contentRef = useRef<HTMLDivElement>(null);
 
   function scrollToTop() {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
+
+    setPage(21);
   }
 
   const getPerson = async () => {
@@ -56,6 +58,10 @@ export function Application() {
         endpoints.map(item => axios.get(item))
       );
 
+      const count = await axios.get('https://pokeapi.co/api/v2/pokemon/');
+      setCountPage(count.data.count);
+      
+
       setCharacters(endpoint.map(res => res.data));
     } catch (error) {
       console.log(error);
@@ -64,29 +70,57 @@ export function Application() {
     }
   };
 
+  const pokemonFilter = (name: string) => {
+    // Se o campo de pesquisa estiver vazio, retorna todos os Pokémon
+    if (name === '') {
+      getPerson();
+      return;
+    }
+
+    // Filtra os Pokémon cujos nomes começam com a letra digitada
+    const filteredPokemons = characters.filter(pokemon =>
+      pokemon.name.toLowerCase().startsWith(name.toLowerCase())
+    );
+    setCharacters(filteredPokemons);
+  };
+
   useEffect(() => {
     getPerson();
   }, [page]);
 
-  useEffect(() => {
-    if (contentRef.current) {
-      const scrollPosition = contentRef.current.getBoundingClientRect().top + window.pageYOffset;
-      const offset = scrollPosition + (contentRef.current.clientHeight / 1.066) - (window.innerHeight / 1.2);
-      window.scrollTo({
-        top: offset,
-        behavior: 'smooth'
-      });
-    }
-  }, [characters]);
-  
-  
+  // useEffect(() => {
+  //   if (contentRef.current) {
+  //     const scrollPosition =
+  //       contentRef.current.getBoundingClientRect().top + window.pageYOffset;
+  //     const offset =
+  //       scrollPosition +
+  //       contentRef.current.clientHeight / 1.066 -
+  //       window.innerHeight / 1.2;
+  //     window.scrollTo({
+  //       top: offset,
+  //       behavior: 'smooth'
+  //     });
+  //   }
+  // }, [characters]);
 
   return (
     <>
       {isLoading && <Loadin />}
       <S.ContainerApp>
+        <S.LogoPokemon src={logo} />
         <S.HeaderApp>
-          <S.LogoPokemon src={logo} />
+          <S.Search
+            type="search"
+            placeholder="Pesquisar Pokemon"
+            onChange={e => pokemonFilter(e.target.value)}
+          />
+
+          <S.CountPage>
+            <S.InfoPage>Nº Total de Personagens: {countPage}</S.InfoPage>
+            <S.InfoPage>Nº de Personagens carregados: {page}</S.InfoPage>
+
+          
+          </S.CountPage>
         </S.HeaderApp>
 
         <S.ContentCharacters ref={contentRef}>
