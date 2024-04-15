@@ -9,21 +9,25 @@ export const ContainerCard = styled.div`
   
 `;
 
-export const ContentImage = styled.div`
+export const ContentImage = styled.button`
   width: 100%;
   height: 24.3rem;
   overflow: hidden;
   border-radius: 0.4rem;
+  background-color: transparent;
 `;
 
 export const ImagePokemon = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 export const InfoPokemon = styled.div`
   margin-top: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  
 `;
 
 export const NamePokemon = styled.h3`
