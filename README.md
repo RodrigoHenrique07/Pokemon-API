@@ -81,10 +81,12 @@ Observe se o arquivo pre-commit na raiz da pasta husky está com a configuraçã
 
 ```
   echo 'Check for linting errors...'
-   npx lint-staged || 
-  (echo 'Linting errors or tests failed. Please fix them before commiting.' && exit 1)
-  
-  echo 'Done'
+npm run check:fix || 
+(echo 'Linting errors. Please fix them before commiting.' && exit 1)
+
+
+
+echo 'Done'
 ```
 
 
