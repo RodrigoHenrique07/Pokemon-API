@@ -60,7 +60,6 @@ export function Application() {
 
       const count = await axios.get('https://pokeapi.co/api/v2/pokemon/');
       setCountPage(count.data.count);
-      
 
       setCharacters(endpoint.map(res => res.data));
     } catch (error) {
@@ -82,6 +81,10 @@ export function Application() {
       pokemon.name.toLowerCase().startsWith(name.toLowerCase())
     );
     setCharacters(filteredPokemons);
+  };
+
+  const MorePokemon = () => {
+    setPage(page + 20);
   };
 
   useEffect(() => {
@@ -118,8 +121,6 @@ export function Application() {
           <S.CountPage>
             <S.InfoPage>Nº Total de Personagens: {countPage}</S.InfoPage>
             <S.InfoPage>Nº de Personagens carregados: {page}</S.InfoPage>
-
-          
           </S.CountPage>
         </S.HeaderApp>
 
@@ -134,7 +135,7 @@ export function Application() {
           ))}
         </S.ContentCharacters>
 
-        <S.Button onClick={() => setPage(page + 20)}>Carregar mais</S.Button>
+        <S.Button onClick={MorePokemon}>Carregar mais</S.Button>
         {page >= 22 && <S.ButtonTop onClick={scrollToTop}>^</S.ButtonTop>}
       </S.ContainerApp>
     </>

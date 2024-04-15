@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const ContainerCard = styled.div`
   width: 100%;
+ 
   background-color: #151020;
   border-radius: 2px;
   padding: 2rem;
+  
 `;
 
 export const ContentImage = styled.div`

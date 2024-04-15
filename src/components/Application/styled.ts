@@ -16,6 +16,11 @@ export const HeaderApp = styled.div`
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   width: 100%;
   margin-top: 30px;
+  @media (max-width: 600px){
+  flex-direction: column-reverse;
+  gap: 2rem;
+  align-items: start;
+  }
 `;
 
 export const LogoPokemon = styled.img`
@@ -27,6 +32,19 @@ export const ContentCharacters = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 1.6rem;
+
+
+  @media (max-width: 1280px){
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 980px){
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 600px){
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 export const Button = styled.button`
